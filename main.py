@@ -15,7 +15,7 @@ PROBLEMS:
 
 1. FOV increase should be based on time delta, its too sudden currently (line 123).
 2. Crouching needs to be smoother, add time delta to camera position change (line 135).
-3. Grass texture needs to have its own voxel settings so that the top and bottom texture won't the same (line 61).
+3. Grass texture needs to have its own voxel settings so that the top and bottom texture won't be the same (line 61).
 
 
 TO-DO (not in order):
