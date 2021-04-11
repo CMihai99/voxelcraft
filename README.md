@@ -3,6 +3,8 @@ Voxelcraft is an open-source project written in [the ursina engine](https://gith
 
 Check project wikis for more in-depth information.
 
+![preview](https://user-images.githubusercontent.com/69072635/114299789-e1a73a80-9ac5-11eb-8d02-6ca3dc1d2c79.png)
+
 
 # Installation
 To run the program use the following command:
@@ -16,11 +18,11 @@ and then run [main.py](https://github.com/CMihai99/nesucraft/blob/main/main.py).
 
 ## Controls
 
-W - move up
+W - up
 
 A - strafe left
 
-S - move down
+S - down
 
 D - strafe right
 
