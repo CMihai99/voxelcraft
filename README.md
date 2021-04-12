@@ -18,43 +18,25 @@ and then run [main.py](https://github.com/CMihai99/nesucraft/blob/main/main.py).
 
 ## Controls
 
-W - up
+WASD - Move
 
-A - strafe left
+1-4 - Change current blocks
 
-S - down
+Left mouse button - Break block
 
-D - strafe right
+RIght mouse button - Place block
 
-1 - change current block to grass (default)
+Shift - Crouch
 
-2 - change current block to dirt
+Ctrl - Sprint
 
-3 - change current block to stone
-
-4 - change current block to cobblestone
-
-Left mouse button - break block
-
-Right mouse button - place block
-
-Shift - crouch
-
-Ctrl - sprint
-
-Space - jump
-
-Esc - menu
+Space - Jump
 
 
 ## Problems
-
-FOV increase should be based on time delta, its too sudden currently (line 123).
-
-Crouching needs to be smoother, add time delta to camera position change (line 135).
 
 Grass texture needs to have its own voxel settings so that the top and bottom texture won't be the same (line 61).
 
 
 ## License
-[MIT License](https://choosealicense.com/licenses/mit/)
+This project is released under the [MIT License](https://choosealicense.com/licenses/mit/).
