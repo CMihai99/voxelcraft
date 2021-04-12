@@ -1,50 +1,44 @@
 """
-Minecraft clone using Ursina Game-Engine for Python (3.9).
+Minecraft clone using Ursina Game-Engine for Python (3.9)
 
 Original version: https://github.com/pokepetter/ursina/blob/master/samples/minecraft_clone.py
-Contributors: Evolution0 (https://github.com/Evolution0/voxelcraft)
 """
 
 """
-GOAL:
+ISSUES:
 
-Add as many features to match the original game as possible until January 1st, 2022
+3. Grass texture needs to have its own voxel faces so that the top and bottom texture aren't be the same (line 57)
 
-
-PROBLEMS:
-
-1. FOV increase should be based on time delta, its too sudden currently (line 123).
-2. Crouching needs to be smoother, add time delta to camera position change (line 135).
-3. Grass texture needs to have its own voxel settings so that the top and bottom texture won't be the same (line 61).
 
 
 TO-DO (not in order):
 
-3rd person view
-Crafting system
-Inventory character view
-Always-on hotbar
-Improve sprinting by basing FOV increase on time delta
-Improve crouching by adding time delta to camera position change
-Flying
-Exit menu
-Start menu
-Improve jumping
-Health and hunger Bar
-Improved hand animations
-Optimize performance
-Expand block collection - Have 8 in total
-Add items - Have 8 in total
-Terrain generation using Mesh
-Improve void
-Maximum reach of 4 blocks
-Chat
+1. 3rd person view
+2. Crafting system
+3. Inventory character view
+4. Always-on hotbar
+5. Improve sprinting by basing FOV increase on time delta
+6. Improve crouching by adding time delta to camera position change
+7. Flying
+8. Exit menu
+9. Start menu
+10. Improve jumping
+11. Health and hunger Bar
+12. Improved hand animations
+13. Optimize performance
+14. Expand block collection - Have 8 in total
+15. Add items - Have 8 in total
+16. Terrain generation using Mesh
+17. Improve void
+18. Maximum reach of 4 blocks
+19. Chat
 """
 
 
 import ursina.application
 from ursina import *
-import sky
+from datetime import datetime, timedelta
+
 
 # Import separate files
 from player import *
@@ -87,20 +81,25 @@ shield = load_texture('assets/shield_texture.png')         # Item not created ye
 
 
 # 13. Window settings
-window.fps_counter.color = color.red
-window.fps_counter.enabled = True
+window.title = 'Voxelcraft 1.0.0'
+window.borderless = False
+window.fullscreen = False
 window.exit_button.visible = False
-window.title = 'Voxelcraft Beta 1.0.0'
+window.fps_counter.enabled = True
+window.fps_counter.color = color.rgb(255, 00, 0, a=255)
 
 
 # 8. Picking blocks
 block_pick = 1  # Default block is grass block
 
 
+# 20. Timedelta
+current_time = datetime.now()
+
+
 def update():
-    global block_pick
-    global menu
-    # If block is destroyed, active hand animation is played
+    global block_pick, menu, current_time
+    # If a block is destroyed, active hand animation is played
     if held_keys['left mouse']:
         hand.active()
     else:
@@ -121,42 +120,43 @@ def update():
     # 14. Sprinting
     if held_keys['control'] and player.crouching is False:
         player.sprinting = True
-        player.speed = player.speed * 3 # When sprinting, increase the speed by 3 times
-        player.camera.fov = 115
+        base_speed = 8 # Default speed
+        sprint_speed = base_speed * 10
+        player.speed = lerp(base_speed, sprint_speed, 2)  # Smoother speed acceleration
+        base_fov = 95
+        sprint_fov = 105
+        player.camera.fov = lerp(base_fov, sprint_fov, 1) # Smoother fov acceleration
+
     else:
         player.sprinting = False
-        player.speed = 8 # Default speed
-        player.camera.fov = 95
+        base_speed = 8 # Default speed
+        sprint_speed = base_speed * 2.5
+        player.speed = lerp(sprint_speed, base_speed, 4)  # Smoother sprint fov to walk fov delay
+        base_fov = 95
+        sprint_fov = 105
+        player.camera.fov = lerp(sprint_fov, base_fov, 2) # Smoother sprint fov to walk fov delay
 
 
     # 17. Crouching
     if held_keys['shift']:
         player.crouching = True
-        player.speed = player.speed / 2 # When crouching, decrease the speed by 2 times
-        player.camera.position = (0, -0.4, 0)
+        base_speed = 8 # Default speed
+        crouch_speed = base_speed / 6
+        player.speed = lerp(base_speed, crouch_speed, 0.5)  # Smoother crouching
+        player.camera.position = (0, -1, 0)    # 1.5 block height
     else:
         player.crouching = False
         player.speed = 8 # Default speed
-        player.camera.position = (0, 0, 0)
+        player.camera.position = (0, -0.66, 0) # 2 block height
 
 
-    # 18. Exit game
-    if held_keys['escape'] and player.in_menu is False:
-        # Keys flit by too fast, need some way to prevent "bounce"
-        player.mouse.locked = False
-        # Switch this out for a proper menu rather than a single button.
-        menu = Button(text='QUIT', color=color.black, scale=.10, text_origin=(0, 0))
-        menu.on_click = application.quit
-        player.in_menu = True
-
-    if player.in_menu is True:
-        # If in a menu close it and go back to previous; if at "bottom level" then resume the game.
-        # Need some way to track "where" we are (Current menu, previous menu)
-        print("In a menu!")
-        if held_keys['escape']:
-            destroy(menu)
-            player.mouse.locked = True
-            player.in_menu = False
+    # 18. Zooming in
+    if held_keys['c']:
+        player.camera.fov = player.camera.fov / 1.3
+        player.camera.x = player.camera.x / 1.3
+    else:
+        player.camera.fov = player.camera.fov
+        player.camera.x = player.camera.x
 
 
 # 15. a. Lower Inventory
@@ -802,7 +802,7 @@ class Voxel(Entity):
     # 6. Place and destroy blocks
     def input(self, key):
         if self.hovered:
-            if key == 'right mouse down':  # If right mouse button is pressed, place new block
+            if key == 'right mouse down': # If right mouse button is pressed, place new block
                 punch_sound.play()
                 # Be able to place different blocks depending on the number pressed
                 if block_pick == 1: voxel = Voxel(position=self.position + mouse.normal,
@@ -817,19 +817,22 @@ class Voxel(Entity):
                 punch_sound.play()
                 while destroy(self) is True:
                     destroy(voxel)
+
+            # 19. Jump
             if key == 'space down':       # If space is pressed, jump one block
                 player.y += 1
                 invoke(setattr, player, 'y', player.y - 1)
 
 
 # 4. Generate default platform
-for z in range(16):  # Generates 16 blocks on the z axis
-    for x in range(16):  # Generates 16 blocks on the x axis
-        voxel = Voxel(position=(x, 0, z))  # Changes position of each block and generates 256 blocks in total (16*16)
+for z in range(20):  # Generates 20 blocks on the z axis
+    for x in range(20):  # Generates 20 blocks on the x axis
+        voxel = Voxel(position=(x, 0, z))  # Changes position of each block and generates 400 blocks in total (20*20)
 
 
-sky = sky.Sky() # Maps the sky
-hand = Hand()   # Maps the hand
+import sky
+sky = sky.Sky()    # Maps the sky
+hand = Hand()      # Maps the hand
 player = Player()  # Maps the player to the 1st person view
 
 
