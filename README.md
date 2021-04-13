@@ -32,6 +32,8 @@ Ctrl - Sprint
 
 Space - Jump
 
+E - Open inventory (Can't close for now)
+
 
 ## Problems
 
