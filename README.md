@@ -37,7 +37,7 @@ E - Open inventory (Can't close for now)
 
 ## Problems
 
-Grass texture needs to have its own voxel settings so that the top and bottom texture won't be the same (line 61).
+Can't close inventory.
 
 
 ## License
