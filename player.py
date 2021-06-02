@@ -6,7 +6,7 @@ class Player(FirstPersonController):
 	def __init__(self):
 		super(Player, self).__init__()
 		self.camera = camera
-		self.speed = 6
+		self.speed = 8
 		camera.fov = 95
 		self.mouse = mouse
 		self.in_menu = False
