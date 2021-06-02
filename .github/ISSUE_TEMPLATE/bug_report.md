@@ -1,10 +1,9 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: "[BUG]"
-labels: ''
+name: Bug
+about: Report a bug to help improve Voxelcraft.
+title: "[Bug]"
+labels: 'bug'
 assignees: ''
-
 ---
 
 **Describe the bug**
@@ -12,27 +11,30 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+1.  Go to '...'
+2.  Click on '...'
+3.  Scroll down to '...'
+4.  See error
+
+**Error message**
+If you got any, please paste the error message related to the problem.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Desktop**
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+-   OS: (e.g. MacOS)
+-   Browser (e.g. chrome, safari)
+-   Browser Version (e.g. 11)
+
+**Smartphone**
+
+-   Device: (e.g. iPhone8)
+-   OS: (e.g. iOS14.1)
+-   Browser (e.g. firefox, safari)
+-   Browser Version (e.g. 22)
 
 **Additional context**
-Add any other context about the problem here.
+Provide any additional context about the problem.
