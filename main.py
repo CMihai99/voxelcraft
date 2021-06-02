@@ -50,44 +50,43 @@ from hand import *
 app = Ursina()
 
 
-# 7. Assets
+# 7. resources
 
 # Textures
-grass_texture = load_texture('assets/grass_texture.png')
-dirt_texture = load_texture('assets/dirt_texture.png')
-stone_texture = load_texture('assets/stone_texture.png')
-cobblestone_texture = load_texture('assets/cobblestone_texture.png')
+grass_texture = load_texture('resources/grass_texture.png')
+dirt_texture = load_texture('resources/dirt_texture.png')
+stone_texture = load_texture('resources/stone_texture.png')
+cobblestone_texture = load_texture('resources/cobblestone_texture.png')
 
-inventory_slot_texture = load_texture('assets/inventory_slot.png')
-boots_slot_texture = load_texture('assets/boots_slot.png')
-leggings_slot_texture = load_texture('assets/leggings_slot.png')
-chestplate_slot_texture = load_texture('assets/chestplate_slot.png')
-helmet_slot_texture = load_texture('assets/helmet_slot.png')
-shield_slot_texture = load_texture('assets/shield_slot.png')
+inventory_slot_texture = load_texture('resources/inventory_slot.png')
+boots_slot_texture = load_texture('resources/boots_slot.png')
+leggings_slot_texture = load_texture('resources/leggings_slot.png')
+chestplate_slot_texture = load_texture('resources/chestplate_slot.png')
+helmet_slot_texture = load_texture('resources/helmet_slot.png')
+shield_slot_texture = load_texture('resources/shield_slot.png')
 
 # Sounds
-punch_sound = Audio('assets/punch_sound', loop=False, autoplay=False)
+punch_sound = Audio('resources/punch_sound', loop=False, autoplay=False)
 
 # Items
-grass_block = load_texture('assets/grass_block.png')  # Item not created yet, will be used for inventories
-dirt_block = load_texture('assets/dirt_block.png')    # Item not created yet, will be used for inventories
-stone_block = load_texture('assets/stone_block.png')  # Item not created yet, will be used for inventories
-cobblestone_block = load_texture('assets/cobblestone_block.png')  # Item not created yet, will be used for inventories
+grass_block = load_texture('resources/grass_block.png')  # Item not created yet, will be used for inventories
+dirt_block = load_texture('resources/dirt_block.png')    # Item not created yet, will be used for inventories
+stone_block = load_texture('resources/stone_block.png')  # Item not created yet, will be used for inventories
+cobblestone_block = load_texture('resources/cobblestone_block.png')  # Item not created yet, will be used for inventories
 
-iron_boots = load_texture('assets/iron_boots_texture.png') # Item not created yet, will be used for inventories
-iron_leggings = load_texture('assets/iron_leggings_texture.png') # Item not created yet, will be used for inventories
-iron_chestplate = load_texture('assets/iron_chestplate_texture.png') # Item not created yet, will be used for inventories
-iron_helmet = load_texture('assets/iron_helmet_texture.png')     # Item not created yet, will be used for inventories
-shield = load_texture('assets/shield_texture.png')         # Item not created yet, will be used for inventories
+iron_boots = load_texture('resources/iron_boots_texture.png') # Item not created yet, will be used for inventories
+iron_leggings = load_texture('resources/iron_leggings_texture.png') # Item not created yet, will be used for inventories
+iron_chestplate = load_texture('resources/iron_chestplate_texture.png') # Item not created yet, will be used for inventories
+iron_helmet = load_texture('resources/iron_helmet_texture.png')     # Item not created yet, will be used for inventories
+shield = load_texture('resources/shield_texture.png')         # Item not created yet, will be used for inventories
 
 
 # 13. Window settings
-window.title = 'Voxelcraft 1.0.0'
+window.title = 'Voxelcraft'
 window.borderless = False
 window.fullscreen = False
 window.exit_button.visible = False
-window.fps_counter.enabled = True
-window.fps_counter.color = color.rgb(255, 00, 0, a=255)
+window.fps_counter.enabled = False
 
 
 # 15. Inventory
@@ -734,7 +733,6 @@ def update():
     else:
         hand.passive()
 
-
     if held_keys['1']:
         block_pick = 1  # Grass block
     if held_keys['2']:
@@ -813,7 +811,7 @@ class Voxel(Entity):
             parent=scene,
             position=position,  # Right in the middle
             model='cube',
-            origin_y=0.5,
+            origin_y=0.66,
             texture=texture,
             color=color.color(0, 0, random.uniform(0.9, 1)),  # Each block has a random grayscale shade
             scale=1
@@ -845,13 +843,12 @@ class Voxel(Entity):
             if key == 'space down':            # If space is pressed, jump one block
                 player.y += 1
                 invoke(setattr, player, 'y', player.y - 1)
-
+                
 
 # 4. Generate default platform
-for z in range(12):        # Generates 12 blocks on the z axis
-    for x in range(12):    # Generates 12 blocks on the x axis
-        for y in range(4): # Generates 4 blocks on the x axis
-            voxel = Voxel(position=(x, y, z))  # Changes position of each block and generates 400 blocks in total (20*20)
+for z in range(24):        # Generates 24 blocks on the z axis
+    for x in range(24):    # Generates 24 blocks on the x axis
+        voxel = Voxel(position=(x, 0, z))
 
 
 import sky
