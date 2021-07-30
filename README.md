@@ -4,22 +4,23 @@
 
 ## Installation
 
-Run `pip install -r requirements.txt` and then run `main.py`.
+1. `pip install -r requirements.txt`
+2. Run main.py
 
-# Game Controls
+## Game Controls
 
-WASD - Move
+Move: WASD
 
-1-4 - Change current blocks
+Jump: Spacebar
 
-Left mouse button - Break block
+Sprint: CTRL+WASD
 
-RIght mouse button - Place block
+Crouch: Shift
 
-Shift - Crouch
+Change block: 1/2/3/4
 
-Ctrl - Sprint
+Break block: Left mouse button
 
-Space - Jump
+Place block: Right mouse button
 
-E - Toggle inventory
+Open Inventory: E
