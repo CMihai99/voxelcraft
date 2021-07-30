@@ -5,7 +5,7 @@
 ## Installation
 
 1. `pip install -r requirements.txt`
-2. Run ``src/main.py``
+2. `python src/main.py`
 
 ## Game Controls
 
@@ -17,7 +17,7 @@ Sprint: CTRL+WASD
 
 Crouch: Shift
 
-Change block: 1/2/3/4
+Change block: 1 to 4
 
 Break block: Left mouse button
 
