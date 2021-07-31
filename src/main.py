@@ -9,37 +9,24 @@ from arm import *
 # Game instance
 app = Ursina()
 
-# Texture
-grass_texture = load_texture('/resources/grass_texture.png')
-dirt_texture = load_texture('/resources/dirt_texture.png')
-stone_texture = load_texture('/resources/stone_texture.png')
-cobblestone_texture = load_texture('/resources/cobblestone_texture.png')
+# Textures
+grass_texture = load_texture('/resources/blocks/textures/grass.png')
+dirt_texture = load_texture('/resources/blocks/textures/dirt.png')
+stone_texture = load_texture('/resources/blocks/textures/stone.png')
+cobblestone_texture = load_texture('/resources/blocks/textures/cobblestone.png')
 
-slot_texture = load_texture('/resources/slot.png')
-boots_slot_texture = load_texture('/resources/boots_slot.png')
-leggings_slot_texture = load_texture('/resources/leggings_slot.png')
-chestplate_slot_texture = load_texture('/resources/chestplate_slot.png')
-helmet_slot_texture = load_texture('/resources/helmet_slot.png')
-shield_slot_texture = load_texture('/resources/shield_slot.png')
+slot_texture = load_texture('/resources/inventory/empty_slot.png')
+shield_slot_texture = load_texture('/resources/inventory/shield_slot.png')
+boots_slot_texture = load_texture('/resources/inventory/boots_slot.png')
+leggings_slot_texture = load_texture('/resources/inventory/leggings_slot.png')
+chestplate_slot_texture = load_texture('/resources/inventory/chestplate_slot.png')
+helmet_slot_texture = load_texture('/resources/inventory/helmet_slot.png')
 
-# Ites not created yet (will be used for inventories)
-grass_block = load_texture('/resources/grass_block.png')
-dirt_block = load_texture('/resources/dirt_block.png')
-stone_block = load_texture('/resources/stone_block.png')
-cobblestone_block = load_texture('/resources/cobblestone_block.png')
-
-# Items not created yet (will be used for inventories)
-iron_boots = load_texture('/resources/iron_boots_texture.png')
-iron_leggings = load_texture('/resources/iron_leggings_texture.png')
-iron_chestplate = load_texture('/resources/iron_chestplate_texture.png')
-iron_helmet = load_texture('/resources/iron_helmet_texture.png')
-shield = load_texture('/resources/shield_texture.png')
-
-# Sound
-punch_sound = Audio('/resources/punch_sound', loop = False, autoplay = False)
+# Sounds
+hit_sound = Audio('/resources/player/arm/hit', loop = False, autoplay = False)
 
 # Window settings
-window.title = 'Voxelcraft'
+window.title = 'Voxelcraft vAlpha1.0.0'
 window.borderless = False
 window.fullscreen = False
 window.exit_button.visible = False
@@ -672,6 +659,10 @@ def update():
 
     Inventory().Hotbar() # Show the hotbar at all times
 
+    # Exit game
+    if held_keys['escape']:
+        exit()
+
     # If a block is being destroyed, active arm animation is played
     if held_keys['left mouse']:
         arm.active()
@@ -721,8 +712,8 @@ def update():
 
     # Zoom
     if held_keys['c']:
-        player.camera.fov = player.camera.fov / 1.3
-        player.camera.x = player.camera.x / 1.3
+        player.camera.fov = player.camera.fov / 1.33
+        player.camera.x = player.camera.x / 1.33
     else:
         player.camera.fov = player.camera.fov
         player.camera.x = player.camera.x
@@ -744,7 +735,7 @@ def update():
 
 # Blocks
 class Voxel(Entity):
-    def __init__(self, position=(0, 0, 0), texture=grass_texture):
+    def __init__(self, position = (0, 0, 0), texture = grass_texture):
         # Ends up with the grass texture being selected as default
         super().__init__(
             parent = scene,
@@ -761,8 +752,9 @@ class Voxel(Entity):
         global inventory
 
         if self.hovered:
-            if key == 'right mouse down': # If right mouse button is pressed, place new block
-                punch_sound.play()
+            # If right mouse button is pressed, place new block
+            if key == 'right mouse down':
+                hit_sound.play()
 
                 if block_pick == 1: voxel = Voxel(position=self.position + mouse.normal,
                                                   texture=grass_texture) # Place grass block
@@ -772,20 +764,27 @@ class Voxel(Entity):
                                                   texture=stone_texture) # Place stone block
                 if block_pick == 4: voxel = Voxel(position=self.position + mouse.normal,
                                                   texture=cobblestone_texture) # Place cobblestone block
-            if key == 'left mouse down': # If left mouse button is pressed, destroy block
-                punch_sound.play()
+
+            # If left mouse button is pressed, destroy block
+            if key == 'left mouse down':
+                hit_sound.play()
                 while destroy(self) is True:
                     destroy(voxel)
 
-            # Jump
-            if key == 'space down': # If space is pressed, jump one block
+            # If space is pressed, jump one block
+            if key == 'space down':
                 player.y += 1
                 invoke(setattr, player, 'y', player.y - 1)
 
 # Generate platform
-for z in range(24):     # Generate 24 blocks on the z axis
-    for x in range(24): # Generate 24 blocks on the x axis
-        voxel = Voxel(position=(x, 0, z))
+while t >= -10:
+    for z in range(6):
+        for x in range(6):
+            voxel = Voxel((x, t, z) , texture= soil_texture)
+    t-=1
+# for z in range(24):     # Generate 24 blocks on the z axis
+#     for x in range(24): # Generate 24 blocks on the x axis
+#         voxel = Voxel(position=(x, 0, z))
 
 # Map necessarry things
 import sky
