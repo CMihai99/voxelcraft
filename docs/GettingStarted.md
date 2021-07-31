@@ -159,7 +159,7 @@ are described in [LicenseRules.md](https://github.com/CMihai99/voxelcraft/blob/m
 
 ## Bug reporting
 
-[ReportingIssues.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/ReportingIssues.md)
+[ReportingIssues.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/ReportingIssues.md)
 describes how to report a possible bug, and specifies what kind of
 information is needed by developers to help track down the problem.
 
