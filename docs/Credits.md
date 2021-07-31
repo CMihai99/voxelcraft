@@ -7,7 +7,7 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 ===-----------------------------------------------------------------------------------===
 -->
 
-# List of credits
+# List of Credits
 
 This is at least a partial credits-file of people that have contributed to
 Voxelcraft. Please try to follow the entry descriptions below.
