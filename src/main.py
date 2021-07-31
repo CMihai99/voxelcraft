@@ -16,7 +16,7 @@ app = Ursina()
 # Import components
 from world.sky import sky
 from player import firstpersoncontroller, arm
-from player.movements import jumping, sprinting, crouching, zooming
+from player.actions import jumping, sprinting, crouching, zooming
 
 # Components
 sky = sky.Sky() # Map the sky to the world
