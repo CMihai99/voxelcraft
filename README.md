@@ -1,26 +1,45 @@
+<!--
+===-----------------------------------------------------------------------------------===
+Copyright (c) 2021 Voxelcraft
+
+For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
+For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
+===-----------------------------------------------------------------------------------===
+-->
+
 # Voxelcraft
 
-![preview](https://user-images.githubusercontent.com/69072635/114299789-e1a73a80-9ac5-11eb-8d02-6ca3dc1d2c79.png)
+[![GitHub issues](https://img.shields.io/github/issues/CMihai99/voxelcraft)](https://github.com/CMihai99/voxelcraft/issues?q=is%3Aissue+is%3Aopen)
+[![Github issues](https://img.shields.io/github/issues-closed/CMihai99/voxelcraft)](https://github.com/CMihai99/voxelcraft/issues?q=is%3Aissue+is%3Aclosed)
+[![Codacy](https://img.shields.io/codacy/grade/6a5dd521dc2b40cf80cb67133ea652a4)](https://app.codacy.com/gh/CMihai99/voxelcraft/dashboard)
 
-## Installation
+## Bugs and Features
 
-1. `pip install -r requirements.txt`
-2. `python src/main.py`
+First, look through existing and closed issues. Feature implementations and
+bug fixes of any sort may take up to 2 weeks. If your problem or idea is not
+addressed yet, you can open a new issue.
 
-## Game Controls
+## Contributing
 
-Move: WASD
+To be a truly great community, we need to welcome contributors from all over
+the world, with different backgrounds and with a wide range of experience.
 
-Jump: Spacebar
+You can give a helping hand by:
 
-Sprint: CTRL+WASD
+-   Reporting a bug
+-   Requesting a feature
+-   Fixing a bug
+-   Implementing a feature
 
-Crouch: Shift
+If you are interested in contributing fixes and features, see [PullRequests.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/maintainer/PullRequests.md).
 
-Change block: 1 to 4
+To give clarity of what is expected of our members, we have adopted a Code of
+Conduct which we think articulates our values well. You can read it [here](https://github.com/CMihai99/voxelcraft/blob/main/docs/process/CodeOfConduct.md).
+You can also read our Code of Ethics which describes our company ethics [here](https://github.com/CMihai99/voxelcraft/blob/main/docs/process/CodeOfEthics.md).
 
-Break block: Left mouse button
+## More
 
-Place block: Right mouse button
-
-Open Inventory: E
+We recommend that you first read [GettingStarted.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/process/GettingStarted.md)
+for information on everything you need to know by describing the process you need
+to go through, and how to work with the community. It will also try to explain some
+of the reasons why the community works like it does, and how to setup development.
