@@ -39,7 +39,7 @@ Do not add any entries after EVERYTHING ELSE. That will be at the end of this fi
 
     Remember that submissions must be made under the terms of the Voxelcraft certificate
     of contribution and should include a `Signed-off-by:` line. The current version
-    of the "Developer's Certificate of Origin" (DCO) is listed in [docs/process/SubmittingPatches.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/process/SubmittingPatches.md).
+    of the "Developer's Certificate of Origin" (DCO) is listed in [SubmittingPatches.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/SubmittingPatches.md).
 
 5.  Always add 2 trailing spaces at the end of each attribute (e.g. S: Maintained  )
 
