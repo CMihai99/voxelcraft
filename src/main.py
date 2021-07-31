@@ -9,18 +9,18 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 # Original idea: https://github.com/pokepetter/ursina/blob/master/samples/minecraft_clone.py
 
-import ursina.application
 from ursina import *
+
 app = Ursina()
 
 # Import components
 from world.sky import sky
-from player import arm, firstpersoncontroller
+from player import firstpersoncontroller, arm
 
 # Components
 sky = sky.Sky() # Map the sky to the world
-arm = arm.Arm() # Map the arm to the player
 player = firstpersoncontroller.Player() # Map the player to the 1st person view
+arm = arm.Arm() # Map the arm to the player
 
 # Textures
 grass_texture = load_texture('/resources/blocks/textures/grass.png')
@@ -669,13 +669,9 @@ class Inventory(Entity):
 block_pick = 1 # Default block is the grass block
 
 def update():
-    global block_pick, menu, current_time
+    global block_pick
 
     Inventory().Hotbar() # Show the hotbar at all times
-
-    # Exit game
-    if held_keys['escape']:
-        exit()
 
     # If a block is being destroyed, active arm animation is played
     if held_keys['left mouse']:
@@ -693,7 +689,7 @@ def update():
         block_pick = 4 # Cobblestone block
 
     # Sprinting
-    if held_keys['control'] and player.crouching is False:
+    if held_keys['control'] and held_keys['w'] and player.crouching is False:
         player.sprinting = True
         base_speed = 8
         sprint_speed = base_speed * 4
@@ -711,7 +707,7 @@ def update():
         player.camera.fov = lerp(sprint_fov, base_fov, 2) # Smoother dynamic FOV
 
     # Crouching
-    if held_keys['shift']:
+    if held_keys['shift'] and player.sprinting is False:
         player.crouching = True
         base_speed = 8
         crouch_speed = base_speed / 4
@@ -722,21 +718,27 @@ def update():
         base_speed = 8
         crouch_speed = base_speed / 2
         player.speed = lerp(base_speed, crouch_speed, 1)   # Smoother dynamic crouching
-        player.camera.position = (0, -0.66, 0) # 2 block height
+        player.camera.position = (0, -1/1.33, 0) # 2 block height
 
-    # Zoom
+    # If space is pressed, jump one block
+    if held_keys['space down']:
+        player.y += 1
+        invoke(setattr, player, 'y', player.y - 1)
+
+    # Zoom in
     if held_keys['c']:
+        player.zoom = True
         player.camera.fov = player.camera.fov / 1.33
         player.camera.x = player.camera.x / 1.33
     else:
+        player.zoom = False
         player.camera.fov = player.camera.fov
         player.camera.x = player.camera.x
 
-    # Open inventory
+    # Open the inventory
     if held_keys['e']:
         player.mouse.locked = False # Show the mouse
 
-        # Open the whole inventory
         Inventory().Lower_Inventory()
         Inventory().Hotbar()
         Inventory().Boots_Slot()
@@ -746,6 +748,10 @@ def update():
         Inventory().Shield_Slot()
         Inventory().Inventory_Crafting_Grid()
         Inventory().Inventory_Crafting_Output()
+
+    # Exit game
+    if held_keys['escape']:
+        exit()
 
 # Blocks
 class Voxel(Entity):
@@ -763,8 +769,6 @@ class Voxel(Entity):
 
     # Place and destroy blocks
     def input(self, key):
-        global inventory
-
         if self.hovered:
             # If right mouse button is pressed, place new block
             if key == 'right mouse down':
@@ -779,20 +783,17 @@ class Voxel(Entity):
                 if block_pick == 4: voxel = Voxel(position=self.position + mouse.normal,
                                                   texture=cobblestone_texture) # Place cobblestone block
 
-            # If left mouse button is pressed, destroy block
+            # If left mouse button is pressed, break block
             if key == 'left mouse down':
                 hit_sound.play()
-                while destroy(self) is True:
+
+                if destroy(self) is True:
                     destroy(voxel)
 
-            # If space is pressed, jump one block
-            if key == 'space down':
-                player.y += 1
-                invoke(setattr, player, 'y', player.y - 1)
-
 # Generate platform
-for z in range(24):     # Generate 24 blocks on the z axis
-    for x in range(24): # Generate 24 blocks on the x axis
-        voxel = Voxel(position=(x, 0, z))
+for x in range(16): # Generate 12 blocks on the x axis
+    for y in range(8): # Generate 12 blocks on the y axis
+        for z in range(16): # Generate 12 blocks on the z axis
+            voxel = Voxel(position=(x, 0, z))
 
 app.run()
