@@ -16,11 +16,16 @@ app = Ursina()
 # Import components
 from world.sky import sky
 from player import firstpersoncontroller, arm
+from player.movements import jumping, sprinting, crouching, zooming
 
 # Components
 sky = sky.Sky() # Map the sky to the world
 player = firstpersoncontroller.Player() # Map the player to the 1st person view
 arm = arm.Arm() # Map the arm to the player
+jumping = jumping.Jump()
+sprinting = sprinting.Sprint()
+crouching = crouching.Crouch()
+zooming = zooming.Zoom()
 
 # Textures
 grass_texture = load_texture('/resources/blocks/textures/grass.png')
@@ -687,53 +692,6 @@ def update():
         block_pick = 3 # Stone block
     if held_keys['4']:
         block_pick = 4 # Cobblestone block
-
-    # Sprinting
-    if held_keys['control'] and held_keys['w'] and player.crouching is False:
-        player.sprinting = True
-        base_speed = 8
-        sprint_speed = base_speed * 4
-        player.speed = lerp(base_speed, sprint_speed, 2)  # Smoother dynamic speed
-        base_fov = 90
-        sprint_fov = 100
-        player.camera.fov = lerp(base_fov, sprint_fov, 1) # Smoother dynamic FOV
-    else:
-        player.sprinting = False
-        base_speed = 8
-        sprint_speed = base_speed * 2
-        player.speed = lerp(sprint_speed, base_speed, 4)  # Smoother dynamic speed
-        base_fov = 90
-        sprint_fov = 100
-        player.camera.fov = lerp(sprint_fov, base_fov, 2) # Smoother dynamic FOV
-
-    # Crouching
-    if held_keys['shift'] and player.sprinting is False:
-        player.crouching = True
-        base_speed = 8
-        crouch_speed = base_speed / 4
-        player.speed = lerp(base_speed, crouch_speed, 0.5) # Smoother dynamic crouching
-        player.camera.position = (0, -1, 0) # 1.5 block height
-    else:
-        player.crouching = False
-        base_speed = 8
-        crouch_speed = base_speed / 2
-        player.speed = lerp(base_speed, crouch_speed, 1)   # Smoother dynamic crouching
-        player.camera.position = (0, -1/1.33, 0) # 2 block height
-
-    # If space is pressed, jump one block
-    if held_keys['space down']:
-        player.y += 1
-        invoke(setattr, player, 'y', player.y - 1)
-
-    # Zoom in
-    if held_keys['c']:
-        player.zoom = True
-        player.camera.fov = player.camera.fov / 1.33
-        player.camera.x = player.camera.x / 1.33
-    else:
-        player.zoom = False
-        player.camera.fov = player.camera.fov
-        player.camera.x = player.camera.x
 
     # Open the inventory
     if held_keys['e']:
