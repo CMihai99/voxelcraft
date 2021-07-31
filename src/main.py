@@ -4,7 +4,7 @@ import ursina.application
 from ursina import *
 
 from player import *
-from hand import *
+from arm import *
 
 # Game instance
 app = Ursina()
@@ -672,11 +672,11 @@ def update():
 
     Inventory().Hotbar() # Show the hotbar at all times
 
-    # If a block is being destroyed, active hand animation is played
+    # If a block is being destroyed, active arm animation is played
     if held_keys['left mouse']:
-        hand.active()
+        arm.active()
     else:
-        hand.passive()
+        arm.passive()
 
     if held_keys['1']:
         block_pick = 1 # Grass block
@@ -789,8 +789,8 @@ for z in range(24):     # Generate 24 blocks on the z axis
 
 # Map necessarry things
 import sky
-sky = sky.Sky()   # Maps the sky to the scene
-hand = Hand()     # Maps the hand to the player
+sky = sky.Sky()   # Maps the sky to the world
+arm = Arm()       # Maps the arm to the player
 player = Player() # Maps the player to the 1st person view
 
 # Run game
