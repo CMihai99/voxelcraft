@@ -7,7 +7,7 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 ===-----------------------------------------------------------------------------------===
 -->
 
-# List of maintainers and how to submit changes
+# List of Maintainers
 
 Please try to follow the guidelines and entry descriptions below. This will make
 things easier on the maintainers. Not all guidelines apply to every patch.
