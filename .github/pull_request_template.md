@@ -3,7 +3,7 @@ Thank you for submitting a Pull Request.
 
 Note:
   - Read our Pull Request guidelines:
-    https://github.com/CMihai99/voxelcraft/blob/main/docs/maintainer/PRGuidelines.md
+    https://github.com/CMihai99/voxelcraft/blob/main/docs/maintaining/PullRequestGuidelines.md
 
   - Associate an issue with the Pull Request.
 
