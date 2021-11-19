@@ -12,13 +12,13 @@ from ursina import *
 # Import components
 from player import firstpersoncontroller
 
-# Components
-player = firstpersoncontroller.Player() # Map the player to the 1st person view
+# Map the player to the 1st person view
+player = firstpersoncontroller.Player()
 
 class Zoom(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui, # Specifies parent of the movement which is the player
+            parent = camera.ui
         )
 
     def update(self):
@@ -26,6 +26,7 @@ class Zoom(Entity):
             player.zoom = True
             player.camera.fov = player.camera.fov / 1.33
             player.camera.x = player.camera.x / 1.33
+
         else:
             player.zoom = False
             player.camera.fov = player.camera.fov

@@ -12,13 +12,13 @@ from ursina import *
 # Import components
 from player import firstpersoncontroller
 
-# Components
-player = firstpersoncontroller.Player() # Map the player to the 1st person view
+# Map the player to the 1st person view
+player = firstpersoncontroller.Player()
 
 class Jump(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui, # Specifies parent of the movement which is the player
+            parent = camera.ui
         )
 
     def update(self):

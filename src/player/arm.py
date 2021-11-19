@@ -9,10 +9,16 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 from ursina import *
 
+# Import components
+from player import firstpersoncontroller
+
+# Map the player to the 1st person view
+player = firstpersoncontroller.Player()
+
 class Arm(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui, # Specifies parent of the arm which is the player
+            parent = camera.ui,
             model = './resources/player/arm/models/arm',
             texture = './resources/player/arm/textures/arm.png',
             scale = 0.2,

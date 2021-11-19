@@ -12,13 +12,13 @@ from ursina import *
 # Import components
 from player import firstpersoncontroller
 
-# Components
-player = firstpersoncontroller.Player() # Map the player to the 1st person view
+# Map the player to the 1st person view
+player = firstpersoncontroller.Player()
 
 class Crouch(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui, # Specifies parent of the movement which is the player
+            parent = camera.ui
         )
 
     def update(self):
@@ -26,11 +26,14 @@ class Crouch(Entity):
             player.crouching = True
             base_speed = 8
             crouch_speed = base_speed / 4
-            player.speed = lerp(base_speed, crouch_speed, 0.5) # Smoother dynamic crouching
+            # Smoother dynamic crouching
+            player.speed = lerp(base_speed, crouch_speed, 0.5)
             player.camera.position = (0, -1, 0) # 1.5 block height
+
         else:
             player.crouching = False
             base_speed = 8
             crouch_speed = base_speed / 2
-            player.speed = lerp(base_speed, crouch_speed, 1)   # Smoother dynamic crouching
+            # Smoother dynamic crouching
+            player.speed = lerp(base_speed, crouch_speed, 1)
             player.camera.position = (0, -1/1.33, 0) # 2 block height

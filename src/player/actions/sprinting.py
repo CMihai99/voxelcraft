@@ -12,13 +12,13 @@ from ursina import *
 # Import components
 from player import firstpersoncontroller
 
-# Components
-player = firstpersoncontroller.Player() # Map the player to the 1st person view
+# Map the player to the 1st person view
+player = firstpersoncontroller.Player()
 
 class Sprint(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui, # Specifies parent of the movement which is the player
+            parent = camera.ui
         )
 
     def update(self):
@@ -26,15 +26,20 @@ class Sprint(Entity):
             player.sprinting = True
             base_speed = 8
             sprint_speed = base_speed * 4
-            player.speed = lerp(base_speed, sprint_speed, 2)  # Smoother dynamic speed
+            # Smoother dynamic speed
+            player.speed = lerp(base_speed, sprint_speed, 2)
             base_fov = 90
             sprint_fov = 100
-            player.camera.fov = lerp(base_fov, sprint_fov, 1) # Smoother dynamic FOV
+            # Smoother dynamic FOV
+            player.camera.fov = lerp(base_fov, sprint_fov, 1)
+
         else:
             player.sprinting = False
             base_speed = 8
             sprint_speed = base_speed * 2
-            player.speed = lerp(sprint_speed, base_speed, 4)  # Smoother dynamic speed
+            # Smoother dynamic speed
+            player.speed = lerp(sprint_speed, base_speed, 4)
             base_fov = 90
             sprint_fov = 100
-            player.camera.fov = lerp(sprint_fov, base_fov, 2) # Smoother dynamic FOV
+            # Smoother dynamic FOV
+            player.camera.fov = lerp(sprint_fov, base_fov, 2)
