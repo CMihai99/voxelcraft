@@ -14,12 +14,11 @@ from ursina import *
 app = Ursina()
 
 # Import components
-from world.sky import sky
+from world.sky import main
 from player import firstpersoncontroller, arm
 from player.actions import jumping, sprinting, crouching, zooming
 
-# Components
-sky = sky.Sky() # Map the sky to the world
+sky = main.Sky() # Map the sky to the world
 player = firstpersoncontroller.Player() # Map the player to the 1st person view
 arm = arm.Arm() # Map the arm to the player
 jumping = jumping.Jump()
@@ -44,16 +43,14 @@ helmet_slot_texture = load_texture('/resources/inventory/helmet_slot.png')
 hit_sound = Audio('/resources/player/arm/hit', loop = False, autoplay = False)
 
 # Window settings
-window.title = 'Voxelcraft alpha1.0.4'
+window.title = 'Voxelcraft Alpha 1.0.0'
 window.icon = load_texture('/resources/blocks/textures/grass.png')
 window.borderless = False
 window.fullscreen = False
 window.exit_button.visible = False
 window.fps_counter.enabled = False
 
-# Inventory
 class Inventory(Entity):
-    # Lower Inventory
     class Lower_Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -103,7 +100,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 9) / 9
@@ -125,7 +123,6 @@ class Inventory(Entity):
             icon.drag = drag
             icon.drop = drop
 
-    # Hotbar
     class Hotbar(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -175,7 +172,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 9) / 9
@@ -197,7 +195,6 @@ class Inventory(Entity):
             icon.drag = drag
             icon.drop = drop
 
-    # Shield slot
     class Shield_Slot(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -247,7 +244,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 1) / 1
@@ -273,7 +271,6 @@ class Inventory(Entity):
             # global shield
             # inventory.append(shield)
 
-    # Boots armor slot
     class Boots_Slot(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -323,7 +320,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 1) / 1
@@ -349,7 +347,6 @@ class Inventory(Entity):
             # global iron_boots
             # inventory.append(iron_boots)
 
-    # Leggings armor slot
     class Leggings_Slot(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -399,7 +396,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 1) / 1
@@ -425,7 +423,6 @@ class Inventory(Entity):
             # global iron_leggings
             # inventory.append(iron_leggings)
 
-    # Chestplate armor slot
     class Chestplate_Slot(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -475,7 +472,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 1) / 1
@@ -501,7 +499,6 @@ class Inventory(Entity):
             # global iron_chestplate
             # inventory.append(iron_chestplate)
 
-    # Helmet armor slot
     class Helmet_Slot(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -551,7 +548,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 1) / 1
@@ -577,7 +575,6 @@ class Inventory(Entity):
             # global iron_helmet
             # inventory.append(iron_helmet)
 
-    # Inventory crafting grid
     class Inventory_Crafting_Grid(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -627,7 +624,8 @@ class Inventory(Entity):
 
             def drag():
                 icon.org_pos = (icon.x, icon.y)
-                icon.z -= .01 # Ensure the dragged item overlaps the rest
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
 
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 2) / 2
@@ -653,7 +651,6 @@ class Inventory(Entity):
             # global iron_helmet
             # inventory.append(iron_helmet)
 
-    # Inventory crafting output
     class Inventory_Crafting_Output(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -676,7 +673,8 @@ block_pick = 1 # Default block is the grass block
 def update():
     global block_pick
 
-    Inventory().Hotbar() # Show the hotbar at all times
+    # Show the hotbar at all times
+    Inventory().Hotbar()
 
     # If a block is being destroyed, active arm animation is played
     if held_keys['left mouse']:
@@ -695,7 +693,8 @@ def update():
 
     # Open the inventory
     if held_keys['e']:
-        player.mouse.locked = False # Show the mouse
+        # Show the mouse
+        player.mouse.locked = False
 
         Inventory().Lower_Inventory()
         Inventory().Hotbar()
@@ -749,9 +748,10 @@ class Voxel(Entity):
                     destroy(voxel)
 
 # Generate platform
-for x in range(16): # Generate 12 blocks on the x axis
-    for y in range(8): # Generate 12 blocks on the y axis
-        for z in range(16): # Generate 12 blocks on the z axis
+for x in range(16): # Generate 16 blocks on the x axis
+    for y in range(4): # Generate 4 blocks on the y axis
+        for z in range(16): # Generate 16 blocks on the z axis
             voxel = Voxel(position=(x, 0, z))
 
+# Run
 app.run()
