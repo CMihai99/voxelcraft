@@ -9,12 +9,6 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 from ursina import *
 
-# Import components
-from player import firstpersoncontroller
-
-# Map the player to the 1st person view
-player = firstpersoncontroller.Player()
-
 class Arm(Entity):
     def __init__(self):
         super().__init__(
