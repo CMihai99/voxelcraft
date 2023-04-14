@@ -722,7 +722,7 @@ class Voxel(Button):
             origin_y = 0.5,
             color=color.color(0, 0, random.uniform(0.9, 1)),
             texture = texture,
-            scale = 0.5
+            scale = 1
         )
 
     # Place and destroy blocks
