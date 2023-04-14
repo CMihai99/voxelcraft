@@ -8,15 +8,19 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 '''
 
 from ursina import *
-from ursina.prefabs.first_person_controller import FirstPersonController
 
-class Player(FirstPersonController):
-    def __init__(self):
-        super(Player, self).__init__()
-        self.camera = camera
-        self.speed = 8
-        camera.fov = 95
-        self.mouse = mouse
-        self.in_menu = False
-        self.crouching = False
-        self.sprinting = False
+class Arm(Entity):
+	def __init__(self):
+		super().__init__(
+			parent = camera.ui,
+			model='../resources/player/arm/models/arm.obj',
+			texture = "../resources/player/arm/textures/arm.png",
+			scale = 0.2,
+			rotation = Vec3(150,-10,0),
+			position = Vec2(0.4,-0.6))
+
+	def active(self):
+		self.position = Vec2(0.3,-0.5)
+
+	def passive(self):
+		self.position = Vec2(0.4,-0.6)
