@@ -1,10 +1,10 @@
 '''
-===-----------------------------------------------------------------------------------===
-Copyright (c) 2021 Voxelcraft
+-----------------------------------------------------------------------------------------
+Copyright (c) 2023 Voxelcraft
 
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
-===-----------------------------------------------------------------------------------===
+-----------------------------------------------------------------------------------------
 '''
 
 # Original idea: https://github.com/pokepetter/ursina/blob/master/samples/minecraft_clone.py
@@ -43,7 +43,7 @@ helmet_slot_texture = load_texture('/resources/inventory/helmet_slot.png')
 hit_sound = Audio('/resources/player/arm/hit', loop = False, autoplay = False)
 
 # Window settings
-window.title = 'Voxelcraft Alpha 1.0.0'
+window.title = 'Voxelcraft Beta 1.0.0'
 window.icon = load_texture('/resources/blocks/textures/grass.png')
 window.borderless = False
 window.fullscreen = False
@@ -719,8 +719,8 @@ class Voxel(Button):
             parent = scene,
             position = position,
             model = "resources/blocks/models/block",
-            origin_y = 0.5,
-            color=color.color(0, 0, random.uniform(0.9, 1)),
+            origin_y = 2.25,
+            color = color.color(0, 0, random.uniform(0.9, 1)),
             texture = texture,
             scale = 1
         )
@@ -732,13 +732,13 @@ class Voxel(Button):
             if key == 'right mouse down':
                 hit_sound.play()
 
-                if block_pick == 1: voxel = Voxel(position=self.position + mouse.normal,
+                if block_pick == 1: Voxel(position=self.position + mouse.normal,
                                                   texture=grass_texture) # Place grass block
-                if block_pick == 2: voxel = Voxel(position=self.position + mouse.normal,
+                if block_pick == 2: Voxel(position=self.position + mouse.normal,
                                                   texture=dirt_texture)  # Place dirt block
-                if block_pick == 3: voxel = Voxel(position=self.position + mouse.normal,
+                if block_pick == 3: Voxel(position=self.position + mouse.normal,
                                                   texture=stone_texture) # Place stone block
-                if block_pick == 4: voxel = Voxel(position=self.position + mouse.normal,
+                if block_pick == 4: Voxel(position=self.position + mouse.normal,
                                                   texture=cobblestone_texture) # Place cobblestone block
 
             # If left mouse button is pressed, break block
@@ -752,7 +752,7 @@ class Voxel(Button):
 for x in range(16):  # Generate 16 blocks on the x axis
     for z in range(16):  # Generate 16 blocks on the z axis
         for y in range(4):  # Generate 4 blocks on the y axis
-            voxel = Voxel(position=(x, y, z))
+            Voxel(position=(x, y, z))
 
 # Run
 app.run()
