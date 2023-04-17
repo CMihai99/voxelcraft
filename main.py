@@ -9,19 +9,21 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 # Original idea: https://github.com/pokepetter/ursina/blob/master/samples/minecraft_clone.py
 
+# Import module
 from ursina import *
-from ursina.prefabs.first_person_controller import FirstPersonController
-
-app = Ursina()
-
 # Import components
-from world.sky import main
+from ursina.prefabs.first_person_controller import FirstPersonController
 from player import arm
 from player.actions import sprinting, crouching, zooming
+from world.sky import main
 
-sky = main.Sky() # Map the sky to the world
-player = FirstPersonController() # Map the player to the 1st person view
-arm = arm.Arm() # Map the arm to the player
+app = Ursina() # Declare program
+
+# Map components
+sky = main.Sky()
+player = FirstPersonController()
+arm = arm.Arm()
+
 sprinting = sprinting.Sprint()
 crouching = crouching.Crouch()
 zooming = zooming.Zoom()
@@ -50,79 +52,8 @@ window.fullscreen = False
 window.exit_button.visible = False
 window.fps_counter.enabled = False
 
+# Player inventory
 class Inventory(Entity):
-    class Lower_Inventory(Entity):
-        def __init__(self, **kwargs):
-            super().__init__(
-                parent = camera.ui,
-                model = Quad(radius=0),
-                texture = slot_texture,
-                texture_scale = (9, 3),
-                scale = (0.72, 0.24),
-                origin = (-0.32, 0.62),
-                position = (-0.23, -0.03),
-                color = color.rgb(255, 255, 255)
-            )
-
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-
-        def find_free_spot(self):
-            for y in range(3):
-                for x in range(9):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
-                                      for e in self.children]
-                    print(grid_positions)
-
-                    if not (x, -y) in grid_positions:
-                        print('found free spot:', x, y)
-                        return x, y
-
-        # Add items
-        def append(self, item, x=0, y=0):
-            if len(self.children) >= 9 * 3:
-                return
-
-            x, y = self.find_free_spot()
-
-            icon = Draggable(
-                parent=self,
-                model='quad',
-                texture=item,
-                color=color.white,
-                scale_x=1 / self.texture_scale[0],
-                scale_y=1 / self.texture_scale[1],
-                origin=(-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
-            )
-
-            def drag():
-                icon.org_pos = (icon.x, icon.y)
-                # Ensure the dragged item overlaps the rest
-                icon.z -= .01
-
-            def drop():
-                icon.x = int((icon.x + (icon.scale_x / 2)) * 9) / 9
-                icon.y = int((icon.y - (icon.scale_y / 2)) * 3) / 3
-                icon.z += .01
-
-                # If outside, return to original position
-                if icon.x < 0 or icon.x >= 1 or icon.y > 0 or icon.y <= -1:
-                    icon.position = (icon.org_pos)
-                    return
-
-                # If the spot is taken, swap positions
-                for c in self.children:
-                    if c == icon:
-                        continue
-                    if c.x == icon.x and c.y == icon.y:
-                        c.position = icon.org_pos
-
-            icon.drag = drag
-            icon.drop = drop
-
     class Hotbar(Entity):
         def __init__(self, **kwargs):
             super().__init__(
@@ -151,7 +82,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add items
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 9 * 1:
                 return
 
@@ -165,9 +96,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x= x * 1 / self.texture_scale[0],
+                y= -y * 1 / self.texture_scale[1],
+                z= -.5,
             )
 
             def drag():
@@ -178,6 +109,78 @@ class Inventory(Entity):
             def drop():
                 icon.x = int((icon.x + (icon.scale_x / 2)) * 9) / 9
                 icon.y = int((icon.y - (icon.scale_y / 2)) * 1) / 1
+                icon.z += .01
+
+                # If outside, return to original position
+                if icon.x < 0 or icon.x >= 1 or icon.y > 0 or icon.y <= -1:
+                    icon.position = (icon.org_pos)
+                    return
+
+                # If the spot is taken, swap positions
+                for c in self.children:
+                    if c == icon:
+                        continue
+                    if c.x == icon.x and c.y == icon.y:
+                        c.position = icon.org_pos
+
+            icon.drag = drag
+            icon.drop = drop
+
+    class Lower_Inventory(Entity):
+        def __init__(self, **kwargs):
+            super().__init__(
+                parent = camera.ui,
+                model = Quad(radius=0),
+                texture = slot_texture,
+                texture_scale = (9, 3),
+                scale = (0.72, 0.24),
+                origin = (-0.32, 0.62),
+                position = (-0.23, -0.03),
+                color = color.rgb(255, 255, 255)
+            )
+
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
+        def find_free_spot(self):
+            for y in range(3):
+                for x in range(9):
+                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                                      for e in self.children]
+                    print(grid_positions)
+
+                    if not (x, -y) in grid_positions:
+                        print('found free spot:', x, y)
+                        return x, y
+
+        # Add items
+        def append(self, item, x = 0, y = 0):
+            if len(self.children) >= 9 * 3:
+                return
+
+            x, y = self.find_free_spot()
+
+            icon = Draggable(
+                parent = self,
+                model = 'quad',
+                texture = item,
+                color = color.white,
+                scale_x = 1 / self.texture_scale[0],
+                scale_y = 1 / self.texture_scale[1],
+                origin = (-.5, .5),
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
+            )
+
+            def drag():
+                icon.org_pos = (icon.x, icon.y)
+                # Ensure the dragged item overlaps the rest
+                icon.z -= .01
+
+            def drop():
+                icon.x = int((icon.x + (icon.scale_x / 2)) * 9) / 9
+                icon.y = int((icon.y - (icon.scale_y / 2)) * 3) / 3
                 icon.z += .01
 
                 # If outside, return to original position
@@ -223,7 +226,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add item
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 1 * 1:
                 return
 
@@ -237,9 +240,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -299,7 +302,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add item
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 1 * 1:
                 return
 
@@ -313,9 +316,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -375,7 +378,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add item
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 1 * 1:
                 return
 
@@ -389,9 +392,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -451,7 +454,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add item
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 1 * 1:
                 return
 
@@ -465,9 +468,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -527,7 +530,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add item
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 1 * 1:
                 return
 
@@ -541,9 +544,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -603,7 +606,7 @@ class Inventory(Entity):
                         return x, y
 
         # Add items
-        def append(self, item, x=0, y=0):
+        def append(self, item, x = 0, y = 0):
             if len(self.children) >= 2 * 2:
                 return
 
@@ -617,9 +620,9 @@ class Inventory(Entity):
                 scale_x = 1 / self.texture_scale[0],
                 scale_y = 1 / self.texture_scale[1],
                 origin = (-.5, .5),
-                x=x * 1 / self.texture_scale[0],
-                y=-y * 1 / self.texture_scale[1],
-                z=-.5,
+                x = x * 1 / self.texture_scale[0],
+                y = -y * 1 / self.texture_scale[1],
+                z = -.5,
             )
 
             def drag():
@@ -661,57 +664,37 @@ class Inventory(Entity):
                 scale = (0.08, 0.08),
                 origin = (1.12, -2.27),
                 position = (0.42, -0.02),
-                color =color.rgb(255, 255, 255)
+                color = color.rgb(255, 255, 255)
             )
 
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-# Picking blocks
-block_pick = 1 # Default block is the grass block
+# def update():
+#     Inventory().Hotbar() # Show hotbar at all times
 
-def update():
-    global block_pick
+#     # Open inventory
+#     if held_keys['e']:
+#         # application.pause()
+#         # Show mouse
+#         mouse.locked = False
 
-    # Show the hotbar at all times
-    Inventory().Hotbar()
-
-    # If a block is being destroyed, active arm animation is played
-    if held_keys['left mouse']:
-        arm.active()
-    else:
-        arm.passive()
-
-    if held_keys['1']:
-        block_pick = 1 # Grass block
-    if held_keys['2']:
-        block_pick = 2 # Dirt block
-    if held_keys['3']:
-        block_pick = 3 # Stone block
-    if held_keys['4']:
-        block_pick = 4 # Cobblestone block
-
-    # Open the inventory
-    if held_keys['e']:
-        # Show the mouse
-        application.pause()
-        mouse.locked = False
-
-        Inventory().Lower_Inventory()
-        Inventory().Hotbar()
-        Inventory().Boots_Slot()
-        Inventory().Leggings_Slot()
-        Inventory().Chestplate_Slot()
-        Inventory().Helmet_Slot()
-        Inventory().Shield_Slot()
-        Inventory().Inventory_Crafting_Grid()
-        Inventory().Inventory_Crafting_Output()
-
-    # Exit game
-    if held_keys['escape']:
-        exit()
+#         Inventory().Lower_Inventory()
+#         Inventory().Boots_Slot()
+#         Inventory().Leggings_Slot()
+#         Inventory().Chestplate_Slot()
+#         Inventory().Helmet_Slot()
+#         Inventory().Shield_Slot()
+#         Inventory().Inventory_Crafting_Grid()
+#         Inventory().Inventory_Crafting_Output()
+#     else:
+#         # application.resume()
+#         # Hide mouse
+#         mouse.locked = True
 
 # Blocks
+block_pick = 1 # Default block is the grass block
+
 class Voxel(Button):
     def __init__(self, position = (0, 0, 0), texture = grass_texture):
         # Ends up with the grass texture being selected as default
@@ -725,34 +708,56 @@ class Voxel(Button):
             scale = 1
         )
 
-    # Place and destroy blocks
+    # Key input
     def input(self, key):
+        global block_pick
+
         if self.hovered:
-            # If right mouse button is pressed, place new block
-            if key == 'right mouse down':
-                hit_sound.play()
+            # If number 1 button is pressed
+            if key == '1':
+                block_pick = 1 # Pick grass block
+            # If number 2 button is pressed
+            if key == '2':
+                block_pick = 2 # Pick dirt block
+            # If number 3 button is pressed
+            if key == '3':
+                block_pick = 3 # Pick stone block
+            # If number 4 button is pressed
+            if key == '4':
+                block_pick = 4 # Pick cobblestone block
 
-                if block_pick == 1: Voxel(position=self.position + mouse.normal,
-                                                  texture=grass_texture) # Place grass block
-                if block_pick == 2: Voxel(position=self.position + mouse.normal,
-                                                  texture=dirt_texture)  # Place dirt block
-                if block_pick == 3: Voxel(position=self.position + mouse.normal,
-                                                  texture=stone_texture) # Place stone block
-                if block_pick == 4: Voxel(position=self.position + mouse.normal,
-                                                  texture=cobblestone_texture) # Place cobblestone block
-
-            # If left mouse button is pressed, break block
+            # If left mouse button is pressed
             if key == 'left mouse down':
-                hit_sound.play()
+                arm.active() # Arm animation is active
 
-                destroy(self)
+                destroy(self) # Break block
 
+                hit_sound.play() # Play hit sound
+            else:
+                arm.passive() # Arm animation is passive
 
-# Generate platform
-for x in range(16):  # Generate 16 blocks on the x axis
-    for z in range(16):  # Generate 16 blocks on the z axis
-        for y in range(4):  # Generate 4 blocks on the y axis
+            # If right mouse button is pressed
+            if key == 'right mouse down':
+                hit_sound.play() # Play hit sound
+
+                # Place block
+                if block_pick == 1: Voxel(position=self.position + mouse.normal,
+                                                    texture=grass_texture) # Place grass block
+                if block_pick == 2: Voxel(position=self.position + mouse.normal,
+                                                    texture=dirt_texture)  # Place dirt block
+                if block_pick == 3: Voxel(position=self.position + mouse.normal,
+                                                    texture=stone_texture) # Place stone block
+                if block_pick == 4: Voxel(position=self.position + mouse.normal,
+                                                    texture=cobblestone_texture) # Place cobblestone block
+
+            # If escape button is pressed
+            if key == 'escape':
+                exit() # Exit program
+
+# Generate map
+for x in range(16): # 16 blocks on the x-axis
+    for y in range(4): # 4 blocks on the y-axis
+        for z in range(16): # 16 blocks on the z-axis
             Voxel(position=(x, y, z))
 
-# Run
-app.run()
+app.run() # Run program
