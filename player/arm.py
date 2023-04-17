@@ -14,14 +14,16 @@ class Arm(Entity):
 	def __init__(self):
 		super().__init__(
 			parent = camera.ui,
-			model= '../resources/player/arm/models/arm.obj',
+			model = '../resources/player/arm/models/arm.obj',
 			texture = '../resources/player/arm/textures/arm.png',
 			scale = 0.15,
 			rotation = Vec3(150,-10,0),
 			position = Vec2(0.4,-0.6))
 
+	# Arm position when active
 	def active(self):
 		self.position = Vec2(0.3,-0.5)
 
+	# Arm position when passive
 	def passive(self):
 		self.position = Vec2(0.4,-0.6)
