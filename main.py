@@ -58,7 +58,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = slot_texture,
                 texture_scale = (9, 1),
                 scale = (0.72, 0.08),
@@ -73,7 +73,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(9):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -130,7 +131,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = slot_texture,
                 texture_scale = (9, 3),
                 scale = (0.72, 0.24),
@@ -145,7 +146,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(3):
                 for x in range(9):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -202,7 +204,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = shield_slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -217,7 +219,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(1):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -278,7 +281,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = boots_slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -293,7 +296,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(1):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -354,7 +358,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent= camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = leggings_slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -369,7 +373,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(1):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -430,7 +435,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = chestplate_slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -445,7 +450,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(1):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -506,7 +512,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = helmet_slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -521,7 +527,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(1):
                 for x in range(1):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -582,7 +589,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = slot_texture,
                 texture_scale = (2, 2),
                 scale = (0.16, 0.16),
@@ -597,7 +604,8 @@ class Inventory(Entity):
         def find_free_spot(self):
             for y in range(2):
                 for x in range(2):
-                    grid_positions = [(int(e.x * self.texture_scale[0]), int(e.y * self.texture_scale[1]))
+                    grid_positions = [(int(e.x * self.texture_scale[0]),
+                                       int(e.y * self.texture_scale[1]))
                                       for e in self.children]
                     print(grid_positions)
 
@@ -658,7 +666,7 @@ class Inventory(Entity):
         def __init__(self, **kwargs):
             super().__init__(
                 parent = camera.ui,
-                model = Quad(radius=0),
+                model = Quad(radius = 0),
                 texture = slot_texture,
                 texture_scale = (1, 1),
                 scale = (0.08, 0.08),
@@ -701,7 +709,7 @@ class Voxel(Button):
         super().__init__(
             parent = scene,
             position = position,
-            model = "resources/blocks/models/block",
+            model = 'resources/blocks/models/block',
             origin_y = 2.25,
             color = color.color(0, 0, random.uniform(0.9, 1)),
             texture = texture,
@@ -741,14 +749,14 @@ class Voxel(Button):
                 hit_sound.play() # Play hit sound
 
                 # Place block
-                if block_pick == 1: Voxel(position=self.position + mouse.normal,
-                                                    texture=grass_texture) # Place grass block
-                if block_pick == 2: Voxel(position=self.position + mouse.normal,
-                                                    texture=dirt_texture)  # Place dirt block
-                if block_pick == 3: Voxel(position=self.position + mouse.normal,
-                                                    texture=stone_texture) # Place stone block
-                if block_pick == 4: Voxel(position=self.position + mouse.normal,
-                                                    texture=cobblestone_texture) # Place cobblestone block
+                if block_pick == 1: Voxel(position = self.position + mouse.normal,
+                                          texture = grass_texture) # Place grass block
+                if block_pick == 2: Voxel(position = self.position + mouse.normal,
+                                          texture = dirt_texture)  # Place dirt block
+                if block_pick == 3: Voxel(position = self.position + mouse.normal,
+                                          texture = stone_texture) # Place stone block
+                if block_pick == 4: Voxel(position = self.position + mouse.normal,
+                                          texture = cobblestone_texture) # Place cobblestone block
 
             # If escape button is pressed
             if key == 'escape':
