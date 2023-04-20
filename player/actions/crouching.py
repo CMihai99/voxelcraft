@@ -1,40 +1,37 @@
 '''
-===-----------------------------------------------------------------------------------===
-Copyright (c) 2021 Voxelcraft
+-----------------------------------------------------------------------------------------
+Copyright (c) 2023 Voxelcraft
 
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
-===-----------------------------------------------------------------------------------===
+-----------------------------------------------------------------------------------------
 '''
 
+# Import modules
 from ursina import *
+import sys
 
-# Import components
-from ursina.prefabs.first_person_controller import FirstPersonController
-from player.actions.vs import Values
-# Map the player to the 1st person view
-player = FirstPersonController()
-values = Values()
+# Move beyond top level
+sys.path.append('...')
+
+# Import file components
+from main import ursina_player
+from walking import walk_speed
+
+crouch_speed = walk_speed / 5
 
 class Crouch(Entity):
     def __init__(self):
         super().__init__(
             parent = camera.ui
-        )
+            )
 
     def update(self):
-        if held_keys['shift']:
-            values.crouching = True
-            base_speed = 8
-            crouch_speed = base_speed / 4
-            # Smoother dynamic crouching
-            player.speed = lerp(base_speed, crouch_speed, 0.5)
-            player.position = (0, -1, 0) # 1.5 block height
-
+        if held_keys['shift'] and ursina_player.walk is False and ursina_player.sprint is False:
+            ursina_player.crouch = True
+            ursina_player.speed = lerp(walk_speed, crouch_speed, 0.5) # Smooth speed transition
+            ursina_player.origin_y = ursina_player.origin_y - 1 # Crouch 1 block
         else:
-            values.crouching = False
-            base_speed = 8
-            crouch_speed = base_speed / 2
-            # Smoother dynamic crouching
-            player.speed = lerp(base_speed, crouch_speed, 1)
-            player.position = (0, -1/1.33, 0) # 2 block height
+            ursina_player.crouch = False
+            ursina_player.speed = lerp(crouch_speed, walk_speed, 1) # Smooth speed transition
+            ursina_player.origin_y = ursina_player.origin_y # Default height
