@@ -14,9 +14,8 @@ class Sky(Entity):
     def __init__(self):
         super().__init__(
             parent = scene,
-            model = 'cube',
-            # texture = '../resources/world/sky/textures/sky.png',
-            color = color.rgb(95, 175, 255),
+            model = 'sphere',
+            texture = '.../resources/world/sky/textures/sky',
             scale = 1000,
-            double_sided = True # See sky when inside it
-        )
+            double_sided = True # See sky when in it
+            )
