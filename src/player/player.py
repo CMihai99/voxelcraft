@@ -11,7 +11,7 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 from ursina import *
 
 # Sound
-hit_sound = Audio('.../resources/player/sounds/hit', loop = False, autoplay = False)
+hit_sound = Audio('.../resources/player/sounds/hit.wav', loop = False, autoplay = False)
 
 class Player(Entity):
     def __init__(self):
