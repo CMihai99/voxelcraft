@@ -15,9 +15,10 @@ from blocks.blocks import (
     dirt_texture,
     stone_texture,
     cobblestone_texture,
-)
-from blocks.blocks import block_pick, Blocks
 
+    block_pick,
+    Blocks
+)
 
 class BlocksControls(Entity):
     def input(self, key):
