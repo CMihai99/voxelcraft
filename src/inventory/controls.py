@@ -1,11 +1,11 @@
-'''
+"""
 -----------------------------------------------------------------------------------------
 Copyright (c) 2023 Voxelcraft
 
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
 -----------------------------------------------------------------------------------------
-'''
+"""
 
 # Import module
 from ursina import *
@@ -13,13 +13,14 @@ from ursina import *
 # Import file component
 from inventory.inventory import Inventory
 
+
 class InventoryControls(Entity):
-    Inventory.Hotbar() # Show hotbar at all times
+    Inventory.Hotbar()  # Show hotbar at all times
 
     def input(self, key):
         if self.hovered:
             # If 'e' key is pressed
-            if key == 'e':
+            if key == "e":
                 # Open inventory
                 Inventory.LowerInventory()
                 Inventory.BootsSlot()
@@ -31,7 +32,7 @@ class InventoryControls(Entity):
                 Inventory.InventoryCraftingOutput()
 
                 # application.pause()
-                mouse.locked = False # Show mouse
+                mouse.locked = False  # Show mouse
                 # mouse.visible = True # Show mouse
             else:
                 # Close inventory
@@ -45,5 +46,5 @@ class InventoryControls(Entity):
                 destroy(Inventory.InventoryCraftingOutput())
 
                 # application.resume()
-                mouse.locked = True # Hide mouse
+                mouse.locked = True  # Hide mouse
                 # mouse.visible = False # Hide mouse
