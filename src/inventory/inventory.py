@@ -11,12 +11,12 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 from ursina import *
 
 # Textures
-slot_texture = load_texture('.../resources/inventory/textures/empty_slot')
-shield_slot_texture = load_texture('.../resources/inventory/textures/shield_slot')
-boots_slot_texture = load_texture('.../resources/inventory/textures/boots_slot')
-leggings_slot_texture = load_texture('.../resources/inventory/textures/leggings_slot')
-chestplate_slot_texture = load_texture('.../resources/inventory/textures/chestplate_slot')
-helmet_slot_texture = load_texture('.../resources/inventory/textures/helmet_slot')
+slot_texture = load_texture('/resources/inventory/textures/empty_slot.png')
+shield_slot_texture = load_texture('/resources/inventory/textures/shield_slot.png')
+boots_slot_texture = load_texture('/resources/inventory/textures/boots_slot.png')
+leggings_slot_texture = load_texture('/resources/inventory/textures/leggings_slot.png')
+chestplate_slot_texture = load_texture('/resources/inventory/textures/chestplate_slot.png')
+helmet_slot_texture = load_texture('/resources/inventory/textures/helmet_slot.png')
 
 class Inventory(Entity):
     class Hotbar(Entity):
