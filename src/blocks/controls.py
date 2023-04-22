@@ -1,7 +1,6 @@
 '''
 -----------------------------------------------------------------------------------------
 Copyright (c) 2023 Voxelcraft
-
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
 -----------------------------------------------------------------------------------------
@@ -10,35 +9,34 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 # Import module
 from ursina import *
 
-# Import file component
-from blocks import grass_texture, dirt_texture, stone_texture, cobblestone_texture
-from blocks import block_pick, Blocks
+# Import file components
+from blocks.blocks import grass_texture, dirt_texture, stone_texture, cobblestone_texture
+from blocks.blocks import block_pick, Blocks
 
 class BlocksControls(Entity):
     def input(self, key):
         global block_pick
 
         if self.hovered:
-            # If number 1 key is pressed
+            # If 'number 1' key is pressed
             if key == '1':
                 block_pick = 1 # Pick grass block
-            # If number 2 key is pressed
+            # If 'number 2' key is pressed
             if key == '2':
                 block_pick = 2 # Pick dirt block
-            # If number 3 key is pressed
+            # If 'number 3' key is pressed
             if key == '3':
                 block_pick = 3 # Pick stone block
-            # If number 4 key is pressed
+            # If 'number 4' key is pressed
             if key == '4':
                 block_pick = 4 # Pick cobblestone block
 
-            # If left mouse button is pressed
+            # If 'left mouse button' is pressed, break block
             if key == 'left mouse down':
-                destroy(self) # Break block
+                destroy(self)
 
-            # If right mouse button is pressed
+            # If 'right mouse button' is pressed, place block
             if key == 'right mouse down':
-                # Place block
                 if block_pick == 1: Blocks(position = self.position + mouse.normal,
                                             texture = grass_texture) # Place grass block
                 if block_pick == 2: Blocks(position = self.position + mouse.normal,
