@@ -19,7 +19,7 @@ class Terrain(Entity):
         super().__init__(
             parent=scene,
             double_sided=True  # See terrain if in it
-            )
+        )
 
     def generate(self):
         for x in range(16):  # 16 blocks on the x-axis
