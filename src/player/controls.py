@@ -11,8 +11,8 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 from ursina import *
 
 # Import file components
-from player import hit_sound
-from arm import Arm
+from player.player import hit_sound
+from player.arm import Arm
 
 class PlayerControls(Entity):
     def input(self, key):
@@ -25,6 +25,6 @@ class PlayerControls(Entity):
             else:
                 Arm().passive() # Arm animation is passive
 
-            # If right mouse button is pressed
+            # If right mouse button is pressed, play hit sound
             if key == 'right mouse down':
-                hit_sound.play() # Play hit sound
+                hit_sound.play()
