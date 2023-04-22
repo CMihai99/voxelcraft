@@ -9,7 +9,6 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 # Import module
 from ursina import *
-
 # Import module component
 from ursina.prefabs.first_person_controller import FirstPersonController
 
