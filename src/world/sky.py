@@ -15,7 +15,7 @@ class Sky(Entity):
         super().__init__(
             parent = scene,
             model = 'sphere',
-            texture = '.../resources/world/sky/textures/sky',
+            texture = '/resources/world/sky/textures/sky.png',
             scale = 1000,
-            double_sided = True # See sky when in it
+            double_sided = True # See sky if in it
             )
