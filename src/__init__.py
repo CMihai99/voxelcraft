@@ -20,6 +20,7 @@ from player.actions.zoom import Zoom
 from player.actions.walk import Walk
 from player.actions.sprint import Sprint
 from player.actions.crouch import Crouch
+from player.actions.jump import Jump
 
 from controls import MainControls
 from blocks.controls import BlocksControls
@@ -39,6 +40,7 @@ Zoom()
 Walk()
 Sprint()
 Crouch()
+Jump()
 
 MainControls()
 BlocksControls()
