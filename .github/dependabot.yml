@@ -1,0 +1,23 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # Enable version updates for pipenv
+  - package-ecosystem: "pipenv"
+    directory: "/" # Look in the root directory
+    # Check for updates daily
+    schedule:
+      interval: "daily"
+    # Reviewers to set on update pull requests
+    reviewers:
+      - "CMihai99"
+    # Assignees to set on update pull requests
+    assignees:
+      - "CMihai99"
+    # Labels to set on update pull requests
+    labels:
+      - "dependencies"
+      - "dependabot"
+    # Specify how Dependabot should update your package manifest
+    version_requirement_updates: "increase_versions_if_necessary"
