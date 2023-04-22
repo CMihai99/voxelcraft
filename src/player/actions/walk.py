@@ -7,20 +7,17 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 -----------------------------------------------------------------------------------------
 '''
 
-# Import modules
+# Import module
 from ursina import *
-import sys
 
-# Move beyond top level
-sys.path.append('...')
-
-# Import file component
-from main import ursina_player
-from crouching import crouch_speed
-from sprinting import sprint_speed
-
+# Declare variables early to prevent circular imports
 walk_speed = 10
 walk_fov = 80
+
+# Import file components
+from main import ursina_player
+from player.actions.crouch import crouch_speed
+from player.actions.sprint import sprint_speed
 
 class Walk(Entity):
     def __init__(self):
@@ -29,12 +26,15 @@ class Walk(Entity):
             )
 
     def update(self):
+        # If player is crouching, player isn't walking
         if ursina_player.crouch is True:
             ursina_player.walk = False
             walk_speed = crouch_speed
+        # If player is sprinting, player isn't walking
         if ursina_player.sprint is True:
             ursina_player.walk = False
             walk_speed = sprint_speed
+        # Player is walking
         else:
             ursina_player.walk = True
             walk_speed = walk_speed
