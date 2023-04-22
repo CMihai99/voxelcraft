@@ -1,11 +1,11 @@
-'''
+"""
 -----------------------------------------------------------------------------------------
 Copyright (c) 2023 Voxelcraft
 
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
 -----------------------------------------------------------------------------------------
-'''
+"""
 
 # Import module
 from ursina import *
@@ -19,11 +19,12 @@ from main import ursina_player
 from player.actions.crouch import crouch_speed
 from player.actions.sprint import sprint_speed
 
+
 class Walk(Entity):
     def __init__(self):
         super().__init__(
-            parent = camera.ui
-            )
+            parent=camera.ui
+        )
 
     def update(self):
         # If player is crouching, player isn't walking
