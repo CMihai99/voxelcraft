@@ -1,11 +1,11 @@
-'''
+"""
 -----------------------------------------------------------------------------------------
 Copyright (c) 2023 Voxelcraft
 
 For copying notice, see https://github.com/CMihai99/voxelcraft/blob/main/COPYING.
 For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENSES.
 -----------------------------------------------------------------------------------------
-'''
+"""
 
 # Import file components
 from world.sky import Sky
