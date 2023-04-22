@@ -1,2 +1,4 @@
 ursina
 black
+isort
+bandit
