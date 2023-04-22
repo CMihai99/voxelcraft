@@ -12,6 +12,7 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 [![GitHub issues](https://img.shields.io/github/issues/CMihai99/voxelcraft)](https://github.com/CMihai99/voxelcraft/issues?q=is%3Aissue+is%3Aopen)
 [![Github issues](https://img.shields.io/github/issues-closed/CMihai99/voxelcraft)](https://github.com/CMihai99/voxelcraft/issues?q=is%3Aissue+is%3Aclosed)
 [![Codacy](https://img.shields.io/codacy/grade/6a5dd521dc2b40cf80cb67133ea652a4)](https://app.codacy.com/gh/CMihai99/voxelcraft/dashboard)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## Bugs and Features
 
