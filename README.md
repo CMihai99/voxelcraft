@@ -27,10 +27,10 @@ the world, with different backgrounds and with a wide range of experience.
 
 You can give a helping hand by:
 
--   Reporting a bug
--   Requesting a feature
--   Fixing a bug
--   Implementing a feature
+- Reporting a bug
+- Requesting a feature
+- Fixing a bug
+- Implementing a feature
 
 If you are interested in contributing fixes and features, see [PullRequests.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/PullRequests.md).
 
