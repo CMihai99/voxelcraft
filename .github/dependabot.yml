@@ -19,5 +19,5 @@ updates:
     labels:
       - "dependencies"
       - "dependabot"
-    # Specify how Dependabot should update your package manifest
-    version_requirement_updates: "increase_versions_if_necessary"
+    # Increase the version requirements only when required
+    versioning-strategy: increase-if-necessary
