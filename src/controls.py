@@ -13,6 +13,6 @@ from ursina import *
 class MainControls(Entity):
     def input(self, key):
         if self.hovered:
-            # If escape key is pressed
+            # If escape key is pressed, exit program
             if key == 'escape':
-                exit() # Exit program
+                exit()
