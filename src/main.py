@@ -14,7 +14,7 @@ from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 
 # Import file which stores file components
-import __init__
+from __init__ import *
 
 # Declare game
 game = Ursina()
