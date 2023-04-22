@@ -4,7 +4,7 @@
 version: 2
 updates:
   # Enable version updates for pipenv
-  - package-ecosystem: "pipenv"
+  - package-ecosystem: "pip"
     directory: "/" # Look in the root directory
     # Check for updates daily
     schedule:
