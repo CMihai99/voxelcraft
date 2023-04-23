@@ -79,7 +79,7 @@ guidelines matter for every trivial patch so apply some common sense.
   One pattern per line. Multiple `F:` lines are acceptable.
 
 - X: Excluded files and directories that are NOT maintained,
-  same rules as `F:`. Files exclusions are tested before file matches.
+  same rules as `F: Files`. Exclusions are tested before file matches.
   Can be useful for excluding a specific subdirectory, for example:
 
   - F: `net/`
