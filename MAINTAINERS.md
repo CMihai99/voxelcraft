@@ -13,7 +13,7 @@ Please try to follow the guidelines and entry descriptions below.
 This will make things easier on the maintainers. Not all of these
 guidelines matter for every trivial patch so apply some common sense.
 
-## Tips for patch submitters
+## Guidelines
 
 1. Always test your changes, however small, on at least 1 person, preferably more.
 
@@ -46,6 +46,8 @@ guidelines matter for every trivial patch so apply some common sense.
 5. Always add 2 trailing spaces at the end of each attribute (e.g. `EVERYTHING  `, `S: Maintained  `).
 
 ## Section entry descriptions and preferred order
+
+- M: Mail: FullName <address@domain>
 
 - R: Designated Reviewer: FullName <address@domain>
 
@@ -94,6 +96,7 @@ When reading this list, please look for the most precise areas first.
 When adding to this list, please keep the entries in alphabetical order.
 
 EVERYTHING  
+M: Mihai Calinescu <mihaimihaia431@gmail.com>  
 R: Mihai Calinescu <mihaimihaia431@gmail.com>  
 S: Maintained  
 W: <https://github.com/CMihai99/voxelcraft>  
