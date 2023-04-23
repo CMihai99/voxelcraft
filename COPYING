@@ -1,6 +1,19 @@
-Voxelcraft is provided under the MIT license.
+Voxelcraft is provided under:
 
-In addition, other licenses may also apply. For more details, please see:
-  LICENSES/exceptions/ThirdParty
+  SPDX-License-Identifier: MIT
 
-ALL CONTRIBUTIONS TO VOXELCRAFT ARE SUBJECT TO THIS COPYING FILE.
+Being under the terms of the MIT License, according with:
+
+  LICENSES/preferred/MIT
+
+With exceptions, as stated at:
+
+  LICENSES/exceptions
+
+In addition, other licenses may also apply. Please see:
+
+  docs/process/LicenseRules.md
+
+for more details.
+
+All contributions to Voxelcraft are subject to this COPYING file.
