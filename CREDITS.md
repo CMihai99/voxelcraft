@@ -15,7 +15,8 @@ below.
 
 ## Guideline
 
-- Always add 2 trailing spaces at the end of each attribute (e.g. `D: Description  `).
+- Always add 2 trailing spaces at the end of each attribute
+(e.g. `D: Description  `).
 
 ## Section entry descriptions and preferred order
 
