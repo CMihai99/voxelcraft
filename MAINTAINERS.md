@@ -43,7 +43,8 @@ guidelines matter for every trivial patch so apply some common sense.
    The current version of the "Developer's Certificate of Origin" (DCO)
    is listed in [SubmittingPatches.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/SubmittingPatches.md).
 
-5. Always add 2 trailing spaces at the end of each attribute (e.g. `EVERYTHING  `, `S: Maintained  `).
+5. Always add 2 trailing spaces at the end of each attribute
+(e.g. `EVERYTHING  `, `S: Maintained  `).
 
 ## Section entry descriptions and preferred order
 
