@@ -15,7 +15,8 @@ guidelines matter for every trivial patch so apply some common sense.
 
 ## Guidelines
 
-1. Always test your changes, however small, on at least 1 person, preferably more.
+1. Always test your changes, however small, on at least 1 person,
+   preferably more.
 
 2. Make sure your changes compile correctly in multiple configurations.
    In particular, check that changes are both responsive and/or functional.
