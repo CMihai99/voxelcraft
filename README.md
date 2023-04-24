@@ -35,7 +35,7 @@ You can give a helping hand by:
 - Fixing a bug
 - Implementing a feature
 
-If you are interested in contributing fixes and features, see [PullRequests.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/PullRequests.md).
+If you are interested in contributing fixes, features and improving documentation, please see [PullRequests.md](https://github.com/CMihai99/voxelcraft/blob/main/docs/how-to/maintaining/PullRequests.md).
 
 To give clarity of what is expected of our members, we have adopted a
 Code of Conduct which we think articulates our values well. You can
