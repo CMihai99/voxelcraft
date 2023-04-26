@@ -29,8 +29,8 @@ class Sprint(Entity):
         # or crouching, player is sprinting
         if (
             held_keys["control" and "w"]
-            and ursina_player.walk is False
-            and ursina_player.crouch is False
+            and ursina_player.walk == False
+            and ursina_player.crouch == False
         ):
             ursina_player.sprint = True
             ursina_player.speed = lerp(walk_speed, sprint_speed, 2)  # Smooth speed transition
