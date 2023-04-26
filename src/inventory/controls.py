@@ -32,8 +32,8 @@ class InventoryControls(Entity):
                 Inventory.InventoryCraftingOutput()
 
                 # application.pause()
-                mouse.locked = False  # Show mouse
-                # mouse.visible = True # Show mouse
+                mouse.locked = False
+                # mouse.visible = True
             else:
                 # Close inventory
                 destroy(Inventory.LowerInventory())
@@ -46,5 +46,5 @@ class InventoryControls(Entity):
                 destroy(Inventory.InventoryCraftingOutput())
 
                 # application.resume()
-                mouse.locked = True  # Hide mouse
-                # mouse.visible = False # Hide mouse
+                mouse.locked = True
+                # mouse.visible = False
