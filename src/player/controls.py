@@ -22,10 +22,10 @@ class PlayerControls(Entity):
             if key == "left mouse down":
                 Arm().active()  # Arm animation is active
 
-                hit_sound.play()  # Play hit sound
+                hit_sound.play()
             else:
                 Arm().passive()  # Arm animation is passive
 
-            # If right mouse button is pressed, play hit sound
+            # If right mouse button is pressed
             if key == "right mouse down":
                 hit_sound.play()
