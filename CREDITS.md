@@ -10,8 +10,8 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 # List of Credits
 
 This is at least a partial credits-file of people that have contributed
-to Voxelcraft. Please try to follow the guideline and entry descriptions
-below.
+to Voxelcraft. Please try to follow the guideline and entry
+descriptions below.
 
 ## Guideline
 
@@ -28,7 +28,8 @@ below.
 ## Credits list
 
 When reading this list, please look for the most precise areas first.
-When adding to this list, please keep the entries in alphabetical order.
+When adding to this list, please keep the entries in alphabetical
+order.
 
 M: Mihai Calinescu <mihaimihaia431@gmail.com>  
 D: Everything  
