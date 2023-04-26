@@ -30,12 +30,12 @@ class Walk(Entity):
         # If player is crouching, player isn't walking
         if ursina_player.crouch:
             ursina_player.walk = False
-            walk_speed = crouch_speed
+            ursina_player.speed = crouch_speed
         # If player is sprinting, player isn't walking
         if ursina_player.sprint:
             ursina_player.walk = False
-            walk_speed = sprint_speed
+            ursina_player.speed = sprint_speed
         # Player is walking
         else:
             ursina_player.walk = True
-            walk_speed = walk_speed
+            ursina_player.speed = walk_speed
