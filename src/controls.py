@@ -9,11 +9,11 @@ For licenses we use, see https://github.com/CMihai99/voxelcraft/tree/main/LICENS
 
 # Import module
 from ursina import *
-
+import sys
 
 class MainControls(Entity):
     def input(self, key):
         if self.hovered:
             # If escape key is pressed, exit program
             if key == "escape":
-                exit()
+                sys.exit()
