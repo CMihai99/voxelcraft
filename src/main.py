@@ -23,7 +23,7 @@ ursina_player = FirstPersonController()
 
 # Window settings
 window.title = "Voxelcraft Beta 1.0.0"
-window.icon = load_texture("/resources/blocks/textures/grass.png")
+window.icon = "/resources/blocks/textures/grass.png"
 window.borderless = False
 window.fullscreen = False
 window.exit_button.visible = False
