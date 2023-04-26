@@ -28,8 +28,8 @@ class Crouch(Entity):
         # player is crouching
         if (
             held_keys["shift"]
-            and ursina_player.walk is False
-            and ursina_player.sprint is False
+            and ursina_player.walk == False
+            and ursina_player.sprint == False
         ):
             ursina_player.crouch = True
             ursina_player.speed = lerp(walk_speed, crouch_speed, 0.5)  # Smooth speed transition
