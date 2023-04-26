@@ -22,9 +22,9 @@ Note:
 
 - [ ] Requires documentation to be updated.
 
-- [ ] I've discussed this with core contributors already.
-  If not checked, I'm ready to accept this work might be rejected in favor of a different approach.
-  Issue number where discussion took place: #xx.
+- [ ] I've discussed this with core contributors already. If not
+  checked, I'm ready to accept this work might be rejected in favor of
+  a different approach. Issue number where discussion took place: #xx.
 
 ## Pull Request Info
 
