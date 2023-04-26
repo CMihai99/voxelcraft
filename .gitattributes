@@ -15,8 +15,8 @@
 *                  text=auto
 
 # Configurations
-.gitignore         text
 .gitattributes     text
+.gitignore         text
 
 # Documentation
 *.md               text diff=markdown
