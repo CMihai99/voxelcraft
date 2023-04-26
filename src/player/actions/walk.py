@@ -28,11 +28,11 @@ class Walk(Entity):
 
     def update(self):
         # If player is crouching, player isn't walking
-        if ursina_player.crouch is True:
+        if ursina_player.crouch:
             ursina_player.walk = False
             walk_speed = crouch_speed
         # If player is sprinting, player isn't walking
-        if ursina_player.sprint is True:
+        if ursina_player.sprint:
             ursina_player.walk = False
             walk_speed = sprint_speed
         # Player is walking
