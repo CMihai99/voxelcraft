@@ -12,12 +12,12 @@
 # When adding to this list, please keep the entries in alphabetical
 # order.
 
-*                  text=auto
+*                 text=auto
 
 # Configurations
-.gitattributes     text
-.gitignore         text
+.gitattributes    text
+.gitignore        text
 
 # Documentation
-*.md               text diff=markdown
-*.txt              text
+*.md              text diff=markdown
+*.txt             text
